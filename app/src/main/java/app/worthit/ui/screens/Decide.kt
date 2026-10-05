@@ -260,7 +260,7 @@ private fun shareCard(draft: Draft, profile: Profile, f: Frequency?, l: Lifespan
             append("${Fmt.money(WorthMath.costPerUse(draft.price, f, l), profile.currency)} per use.\n")
             append("Maybe it's worth it.\n")
         }
-        append("\n— via Worth It")
+        append("\n— via Worth It · https://worthitapp.vercel.app")
     }
 }
 

@@ -1,5 +1,7 @@
 # Worth It ⏳
 
+🌐 **[worthitapp.vercel.app](https://worthitapp.vercel.app/)**
+
 **Turn money into time.** Worth It shows what a purchase really costs you in working days and hours. It also works out the cost per use, keeps you from buying on impulse with a short pause, and later learns which of your purchases were actually worth it.
 
 > Spend less on things you don't care about. Spend confidently on things you do.
@@ -8,7 +10,7 @@
 
 Every push to `main` builds a fresh APK with GitHub Actions. You don't need Android Studio.
 
-1. Open the [latest release](../../releases/latest) on your phone.
+1. Open [worthitapp.vercel.app](https://worthitapp.vercel.app/#download) (or the [latest release](../../releases/latest)) on your phone.
 2. Download `WorthIt-1.0.x.apk` and open it. Allow "install unknown apps" if Android asks.
 3. Later builds install over the previous one, so your data is kept.
 

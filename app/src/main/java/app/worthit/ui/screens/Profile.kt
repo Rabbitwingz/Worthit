@@ -16,6 +16,8 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.AutoAwesome
 import androidx.compose.material.icons.rounded.DeleteForever
 import androidx.compose.material.icons.rounded.Download
+import androidx.compose.material.icons.rounded.Language
+import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
@@ -171,6 +173,14 @@ fun ProfileScreen(vm: AppViewModel, data: AppData) {
                 Spacer(Modifier.height(8.dp))
                 ExpressiveButton("Delete everything", { confirmDelete = true }, Modifier.fillMaxWidth(), icon = Icons.Rounded.DeleteForever, style = BtnStyle.Outlined)
             }
+        }
+
+        item {
+            val uri = LocalUriHandler.current
+            ExpressiveButton(
+                "worthitapp.vercel.app", { uri.openUri("https://worthitapp.vercel.app/") },
+                Modifier.fillMaxWidth(), icon = Icons.Rounded.Language, style = BtnStyle.Text,
+            )
         }
 
         item {

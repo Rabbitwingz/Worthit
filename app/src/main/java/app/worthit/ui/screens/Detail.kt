@@ -114,7 +114,7 @@ fun DetailScreen(vm: AppViewModel, data: AppData, id: String) {
                             if (t != null) append(" = ${t.value} ${t.unit} for me")
                             p.costPerUse?.let { append(", about ${Fmt.money(it, profile.currency)} per use") }
                             p.verdict?.let { append(". Verdict: ${it.label} ${it.emoji}") }
-                            append("\n— via Worth It")
+                            append("\n— via Worth It · https://worthitapp.vercel.app")
                         },
                     )
                 })

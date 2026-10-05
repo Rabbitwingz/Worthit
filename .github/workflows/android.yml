@@ -62,6 +62,7 @@ jobs:
           name: Worth It 1.0.${{ github.run_number }}
           body: |
             Download the APK below and open it on your Android phone to install.
+            Website: https://worthitapp.vercel.app/
             Built from ${{ github.sha }}.
           files: out/*.apk
           make_latest: true
