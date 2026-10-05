@@ -38,6 +38,14 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.rounded.ArrowForward
+import androidx.compose.material.icons.rounded.CameraAlt
+import androidx.compose.material.icons.rounded.DirectionsBike
+import androidx.compose.material.icons.rounded.Flight
+import androidx.compose.material.icons.rounded.Headphones
+import androidx.compose.material.icons.rounded.LocalCafe
+import androidx.compose.material.icons.rounded.ShoppingBag
+import androidx.compose.material.icons.rounded.SportsEsports
+import androidx.compose.material3.Icon
 import androidx.compose.material3.LoadingIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -80,6 +88,7 @@ import app.worthit.ui.components.pressScale
 import app.worthit.ui.components.reveal
 import app.worthit.ui.components.sanitizeAmount
 import app.worthit.ui.components.tick
+import app.worthit.ui.components.bleed
 import app.worthit.ui.theme.Motion
 import kotlinx.coroutines.delay
 
@@ -192,19 +201,29 @@ fun OnboardingScreen(vm: AppViewModel, initial: Profile) {
 
 @Composable
 private fun Welcome() {
-    val emojis = listOf("🎹", "✈️", "👟", "🎧", "☕", "🎮", "🪴")
+    // Vector icons stay razor sharp at hero size (colour emoji are small bitmaps and blur when enlarged).
+    val icons = listOf(
+        Icons.Rounded.Headphones, Icons.Rounded.Flight, Icons.Rounded.LocalCafe,
+        Icons.Rounded.SportsEsports, Icons.Rounded.DirectionsBike, Icons.Rounded.CameraAlt, Icons.Rounded.ShoppingBag,
+    )
     var i by remember { mutableIntStateOf(0) }
     LaunchedEffect(Unit) {
         while (true) {
             delay(1500)
-            i = (i + 1) % emojis.size
+            i = (i + 1) % icons.size
         }
     }
+    val scheme = MaterialTheme.colorScheme
     Column(Modifier.fillMaxWidth().padding(top = 24.dp), horizontalAlignment = Alignment.CenterHorizontally) {
-        MorphingBlob(MaterialTheme.colorScheme.primaryContainer, Modifier.size(240.dp), holdMillis = 1100) {
-            AnimatedContent(emojis[i], transitionSpec = {
-                (scaleIn(Motion.bouncy(), initialScale = 0.2f) + fadeIn()) togetherWith (scaleOut(targetScale = 0.2f) + fadeOut())
-            }, label = "welcomeEmoji") { e -> Text(e, fontSize = 88.sp) }
+        Box(Modifier.size(260.dp), contentAlignment = Alignment.Center) {
+            MorphingBlob(scheme.tertiaryContainer, Modifier.size(260.dp), holdMillis = 1700, spinMillis = 40_000)
+            MorphingBlob(scheme.primary, Modifier.size(196.dp), holdMillis = 1100) {
+                AnimatedContent(icons[i], transitionSpec = {
+                    (scaleIn(Motion.bouncy(), initialScale = 0.2f) + fadeIn()) togetherWith (scaleOut(targetScale = 0.2f) + fadeOut())
+                }, label = "welcomeIcon") { icon ->
+                    Icon(icon, null, Modifier.size(88.dp), tint = scheme.onPrimary)
+                }
+            }
         }
         Spacer(Modifier.height(32.dp))
         Text("What does money mean to you?", style = MaterialTheme.typography.displaySmall, modifier = Modifier.fillMaxWidth())
@@ -250,7 +269,7 @@ private fun IncomeStep(
 ) {
     val focus = LocalFocusManager.current
     StepHeader("What's your monthly income?", "Just a rough number is fine. It never leaves your phone.")
-    Row(Modifier.horizontalScroll(rememberScrollState()), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+    Row(Modifier.bleed(24.dp).horizontalScroll(rememberScrollState()).padding(horizontal = 24.dp), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
         Fmt.currencies.forEach { c -> ChoiceChip("${c.symbol.trim()} ${c.code}", c.code == currency, { onCurrency(c.code) }) }
     }
     Spacer(Modifier.height(20.dp))

@@ -16,102 +16,143 @@ import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontStyle
+import androidx.compose.ui.text.font.FontVariation
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.IntOffset
+import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import app.worthit.R
 
-// Warm off-white + charcoal, one violet accent, green for "good value", clay for "consider".
+/*
+ * "Dusk" palette: a soft iris accent, warm apricot for "consider", sage for "good value",
+ * on calm neutral surfaces. Containers are kept low-chroma so big cards never shout.
+ */
 private val LightColors = lightColorScheme(
-    primary = Color(0xFF5A3FD1),
+    primary = Color(0xFF5B4FC4),
     onPrimary = Color(0xFFFFFFFF),
-    primaryContainer = Color(0xFFE6DEFF),
-    onPrimaryContainer = Color(0xFF1B0063),
-    inversePrimary = Color(0xFFCABEFF),
-    secondary = Color(0xFF8A5A44),
+    primaryContainer = Color(0xFFE4DFFF),
+    onPrimaryContainer = Color(0xFF1C1259),
+    inversePrimary = Color(0xFFC6BFFF),
+    secondary = Color(0xFF8E4E2C),
     onSecondary = Color(0xFFFFFFFF),
-    secondaryContainer = Color(0xFFFFDBCC),
-    onSecondaryContainer = Color(0xFF331206),
-    tertiary = Color(0xFF2E6B4F),
+    secondaryContainer = Color(0xFFFFDCC8),
+    onSecondaryContainer = Color(0xFF341000),
+    tertiary = Color(0xFF356A53),
     onTertiary = Color(0xFFFFFFFF),
-    tertiaryContainer = Color(0xFFB1F1CE),
-    onTertiaryContainer = Color(0xFF002114),
+    tertiaryContainer = Color(0xFFBDEFD4),
+    onTertiaryContainer = Color(0xFF002115),
     error = Color(0xFFBA1A1A),
     onError = Color(0xFFFFFFFF),
     errorContainer = Color(0xFFFFDAD6),
     onErrorContainer = Color(0xFF410002),
-    background = Color(0xFFFDF8F3),
-    onBackground = Color(0xFF1D1B19),
-    surface = Color(0xFFFDF8F3),
-    onSurface = Color(0xFF1D1B19),
-    surfaceVariant = Color(0xFFECE4DC),
-    onSurfaceVariant = Color(0xFF4C463F),
-    surfaceTint = Color(0xFF5A3FD1),
-    inverseSurface = Color(0xFF32302D),
-    inverseOnSurface = Color(0xFFF6F0EA),
-    outline = Color(0xFF7D766E),
-    outlineVariant = Color(0xFFD6CDC3),
+    background = Color(0xFFFBF8FC),
+    onBackground = Color(0xFF1B1B21),
+    surface = Color(0xFFFBF8FC),
+    onSurface = Color(0xFF1B1B21),
+    surfaceVariant = Color(0xFFE5E1EC),
+    onSurfaceVariant = Color(0xFF47464F),
+    surfaceTint = Color(0xFF5B4FC4),
+    inverseSurface = Color(0xFF303036),
+    inverseOnSurface = Color(0xFFF3EFF7),
+    outline = Color(0xFF787680),
+    outlineVariant = Color(0xFFC9C5D0),
     scrim = Color(0xFF000000),
-    surfaceBright = Color(0xFFFDF8F3),
-    surfaceDim = Color(0xFFDED9D3),
+    surfaceBright = Color(0xFFFBF8FC),
+    surfaceDim = Color(0xFFDCD9DD),
     surfaceContainerLowest = Color(0xFFFFFFFF),
-    surfaceContainerLow = Color(0xFFF8F2EC),
-    surfaceContainer = Color(0xFFF2ECE6),
-    surfaceContainerHigh = Color(0xFFECE6E0),
-    surfaceContainerHighest = Color(0xFFE6E1DB),
+    surfaceContainerLow = Color(0xFFF5F2F7),
+    surfaceContainer = Color(0xFFEFECF2),
+    surfaceContainerHigh = Color(0xFFE9E6EC),
+    surfaceContainerHighest = Color(0xFFE3E0E6),
 )
 
 private val DarkColors = darkColorScheme(
-    primary = Color(0xFFCABEFF),
-    onPrimary = Color(0xFF2C009D),
-    primaryContainer = Color(0xFF4224B8),
-    onPrimaryContainer = Color(0xFFE6DEFF),
-    inversePrimary = Color(0xFF5A3FD1),
-    secondary = Color(0xFFF0BBA3),
-    onSecondary = Color(0xFF4D2716),
-    secondaryContainer = Color(0xFF6A3E2C),
-    onSecondaryContainer = Color(0xFFFFDBCC),
-    tertiary = Color(0xFF95D5B2),
-    onTertiary = Color(0xFF003824),
-    tertiaryContainer = Color(0xFF11513A),
-    onTertiaryContainer = Color(0xFFB1F1CE),
+    primary = Color(0xFFC6BFFF),
+    onPrimary = Color(0xFF2B2175),
+    primaryContainer = Color(0xFF353064),
+    onPrimaryContainer = Color(0xFFE4DFFF),
+    inversePrimary = Color(0xFF5B4FC4),
+    secondary = Color(0xFFFFB68E),
+    onSecondary = Color(0xFF532200),
+    secondaryContainer = Color(0xFF4A3426),
+    onSecondaryContainer = Color(0xFFFFDCC8),
+    tertiary = Color(0xFF9FD4B8),
+    onTertiary = Color(0xFF003826),
+    tertiaryContainer = Color(0xFF1F4536),
+    onTertiaryContainer = Color(0xFFBDEFD4),
     error = Color(0xFFFFB4AB),
     onError = Color(0xFF690005),
     errorContainer = Color(0xFF93000A),
     onErrorContainer = Color(0xFFFFDAD6),
-    background = Color(0xFF151311),
-    onBackground = Color(0xFFE8E1DC),
-    surface = Color(0xFF151311),
-    onSurface = Color(0xFFE8E1DC),
-    surfaceVariant = Color(0xFF4C463F),
-    onSurfaceVariant = Color(0xFFCFC6BC),
-    surfaceTint = Color(0xFFCABEFF),
-    inverseSurface = Color(0xFFE8E1DC),
-    inverseOnSurface = Color(0xFF32302D),
-    outline = Color(0xFF988F87),
-    outlineVariant = Color(0xFF4C463F),
+    background = Color(0xFF121116),
+    onBackground = Color(0xFFE5E1E9),
+    surface = Color(0xFF121116),
+    onSurface = Color(0xFFE5E1E9),
+    surfaceVariant = Color(0xFF47464F),
+    onSurfaceVariant = Color(0xFFC8C5D0),
+    surfaceTint = Color(0xFFC6BFFF),
+    inverseSurface = Color(0xFFE5E1E9),
+    inverseOnSurface = Color(0xFF303036),
+    outline = Color(0xFF928F9A),
+    outlineVariant = Color(0xFF47464F),
     scrim = Color(0xFF000000),
-    surfaceBright = Color(0xFF3B3836),
-    surfaceDim = Color(0xFF151311),
-    surfaceContainerLowest = Color(0xFF100E0C),
-    surfaceContainerLow = Color(0xFF1D1B19),
-    surfaceContainer = Color(0xFF221F1D),
-    surfaceContainerHigh = Color(0xFF2C2927),
-    surfaceContainerHighest = Color(0xFF373432),
+    surfaceBright = Color(0xFF39383F),
+    surfaceDim = Color(0xFF121116),
+    surfaceContainerLowest = Color(0xFF0D0C11),
+    surfaceContainerLow = Color(0xFF1B1A20),
+    surfaceContainer = Color(0xFF1F1E25),
+    surfaceContainerHigh = Color(0xFF29282F),
+    surfaceContainerHighest = Color(0xFF34333A),
 )
+
+// Google Sans Flex, the Material 3 Expressive typeface. Display text uses its rounded axis.
+private val weights = listOf(400, 500, 600, 700, 800, 900)
+
+private fun flex(weight: Int, round: Float) = Font(
+    R.font.google_sans_flex,
+    weight = FontWeight(weight),
+    style = FontStyle.Normal,
+    variationSettings = FontVariation.Settings(
+        FontVariation.weight(weight),
+        FontVariation.Setting("ROND", round),
+    ),
+)
+
+val SansFlex = FontFamily(weights.map { flex(it, 0f) })
+val RoundedFlex = FontFamily(weights.map { flex(it, 100f) })
 
 private val Base = Typography()
 
-val WorthTypography = Base.copy(
-    displayLarge = Base.displayLarge.copy(fontWeight = FontWeight.Black, letterSpacing = (-2).sp),
-    displayMedium = Base.displayMedium.copy(fontWeight = FontWeight.ExtraBold, letterSpacing = (-1.5).sp),
-    displaySmall = Base.displaySmall.copy(fontWeight = FontWeight.Bold, letterSpacing = (-1).sp),
-    headlineLarge = Base.headlineLarge.copy(fontWeight = FontWeight.Bold, letterSpacing = (-0.5).sp),
-    headlineMedium = Base.headlineMedium.copy(fontWeight = FontWeight.Bold, letterSpacing = (-0.5).sp),
-    headlineSmall = Base.headlineSmall.copy(fontWeight = FontWeight.SemiBold),
-    titleLarge = Base.titleLarge.copy(fontWeight = FontWeight.SemiBold),
-    titleMedium = Base.titleMedium.copy(fontWeight = FontWeight.SemiBold),
-    labelLarge = Base.labelLarge.copy(fontWeight = FontWeight.SemiBold),
+private fun TextStyle.display(weight: Int, tracking: TextUnit) = copy(
+    fontFamily = RoundedFlex,
+    fontWeight = FontWeight(weight),
+    letterSpacing = tracking,
+    fontFeatureSettings = "tnum",
+)
+
+private fun TextStyle.text(weight: Int) = copy(fontFamily = SansFlex, fontWeight = FontWeight(weight))
+
+val WorthTypography = Typography(
+    displayLarge = Base.displayLarge.display(800, (-1.5).sp),
+    displayMedium = Base.displayMedium.display(800, (-1).sp),
+    displaySmall = Base.displaySmall.display(700, (-0.5).sp),
+    headlineLarge = Base.headlineLarge.display(700, (-0.5).sp),
+    headlineMedium = Base.headlineMedium.display(700, (-0.25).sp),
+    headlineSmall = Base.headlineSmall.display(600, 0.sp),
+    titleLarge = Base.titleLarge.text(600),
+    titleMedium = Base.titleMedium.text(600),
+    titleSmall = Base.titleSmall.text(600),
+    bodyLarge = Base.bodyLarge.text(400),
+    bodyMedium = Base.bodyMedium.text(400),
+    bodySmall = Base.bodySmall.text(400),
+    labelLarge = Base.labelLarge.text(600),
+    labelMedium = Base.labelMedium.text(600),
+    labelSmall = Base.labelSmall.text(500),
 )
 
 val WorthShapes = Shapes(

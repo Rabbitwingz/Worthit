@@ -84,6 +84,7 @@ import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.graphics.drawscope.rotate
 import androidx.compose.ui.graphics.graphicsLayer
+import androidx.compose.ui.layout.layout
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.hapticfeedback.HapticFeedback
 import androidx.compose.ui.hapticfeedback.HapticFeedbackType
@@ -137,6 +138,15 @@ fun TextStyle.fitFor(text: String, comfortable: Int = 9): TextStyle {
         fontSize = fontSize * factor,
         lineHeight = if (lineHeight != androidx.compose.ui.unit.TextUnit.Unspecified) lineHeight * factor else lineHeight,
     )
+}
+
+/** Lets a horizontally scrolling row run to the screen/card edge while its content stays aligned. */
+fun Modifier.bleed(horizontal: Dp): Modifier = layout { measurable, constraints ->
+    val px = if (constraints.hasBoundedWidth) horizontal.roundToPx() else 0
+    val wide = if (px == 0) constraints
+    else constraints.copy(minWidth = constraints.minWidth + px * 2, maxWidth = constraints.maxWidth + px * 2)
+    val p = measurable.measure(wide)
+    layout((p.width - px * 2).coerceAtLeast(0), p.height) { p.place(-px, 0) }
 }
 
 /** Expressive press feedback: squish on press, spring back on release. */
@@ -549,8 +559,8 @@ fun SectionTitle(title: String, action: String? = null, onAction: () -> Unit = {
 @Composable
 fun EmptyState(emoji: String, title: String, body: String, modifier: Modifier = Modifier) {
     Column(modifier.fillMaxWidth().padding(vertical = 32.dp), horizontalAlignment = Alignment.CenterHorizontally) {
-        MorphingBlob(MaterialTheme.colorScheme.secondaryContainer, Modifier.size(140.dp), holdMillis = 2200) {
-            Text(emoji, fontSize = 52.sp)
+        MorphingBlob(MaterialTheme.colorScheme.primaryContainer, Modifier.size(132.dp), holdMillis = 2200) {
+            Text(emoji, fontSize = 44.sp)
         }
         Spacer(Modifier.height(20.dp))
         Text(title, style = MaterialTheme.typography.titleLarge)

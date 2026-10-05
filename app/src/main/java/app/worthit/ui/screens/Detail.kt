@@ -124,7 +124,7 @@ fun DetailScreen(vm: AppViewModel, data: AppData, id: String) {
         }
         item {
             Column(Modifier.fillMaxWidth().reveal(0), horizontalAlignment = Alignment.CenterHorizontally) {
-                MorphingBlob(MaterialTheme.colorScheme.primaryContainer, Modifier.size(120.dp)) { Text(p.emoji, fontSize = 52.sp) }
+                MorphingBlob(MaterialTheme.colorScheme.primaryContainer, Modifier.size(120.dp)) { Text(p.emoji, fontSize = 44.sp) }
                 Spacer(Modifier.height(12.dp))
                 Text(p.name, style = MaterialTheme.typography.headlineMedium, textAlign = TextAlign.Center)
                 Text(Fmt.money(p.price, profile.currency), style = MaterialTheme.typography.displayMedium)

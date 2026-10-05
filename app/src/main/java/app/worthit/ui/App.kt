@@ -65,7 +65,9 @@ private val navItems = listOf(
 @Composable
 fun WorthItApp(vm: AppViewModel) {
     val data by vm.data.collectAsStateWithLifecycle()
-    Box(Modifier.fillMaxSize().background(MaterialTheme.colorScheme.surface)) {
+    // A Surface (not a Box) so every Text inherits onSurface instead of defaulting to black.
+    Surface(Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.surface, contentColor = MaterialTheme.colorScheme.onSurface) {
+      Box(Modifier.fillMaxSize()) {
         AnimatedContent(
             targetState = data.profile.onboarded,
             transitionSpec = {
@@ -77,6 +79,7 @@ fun WorthItApp(vm: AppViewModel) {
             if (onboarded) MainShell(vm, data) else OnboardingScreen(vm, data.profile)
         }
         Confetti(vm.confetti)
+      }
     }
 }
 

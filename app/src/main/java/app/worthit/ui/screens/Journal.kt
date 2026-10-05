@@ -66,6 +66,7 @@ import app.worthit.ui.components.RoundIconButton
 import app.worthit.ui.components.ScreenTitle
 import app.worthit.ui.components.SectionCard
 import app.worthit.ui.components.ShapeBadge
+import app.worthit.ui.components.bleed
 import app.worthit.ui.components.Stepper
 import app.worthit.ui.components.rememberNow
 import app.worthit.ui.components.screenPadding
@@ -118,7 +119,11 @@ fun JournalScreen(vm: AppViewModel, data: AppData) {
                 )
             }
             item {
-                LazyRow(horizontalArrangement = Arrangement.spacedBy(8.dp), modifier = Modifier.padding(vertical = 6.dp)) {
+                LazyRow(
+                    horizontalArrangement = Arrangement.spacedBy(8.dp),
+                    contentPadding = androidx.compose.foundation.layout.PaddingValues(horizontal = 16.dp),
+                    modifier = Modifier.bleed(16.dp).padding(vertical = 6.dp),
+                ) {
                     items(Filter.entries) { f -> ChoiceChip(f.label, f == filter, { filter = f; selected.clear() }) }
                 }
             }

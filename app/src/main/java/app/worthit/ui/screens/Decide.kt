@@ -95,6 +95,7 @@ import app.worthit.ui.components.Stat
 import app.worthit.ui.components.pressScale
 import app.worthit.ui.components.reveal
 import app.worthit.ui.components.shape
+import app.worthit.ui.components.bleed
 import app.worthit.ui.components.tick
 import app.worthit.ui.newId
 import app.worthit.ui.shareText
@@ -275,7 +276,7 @@ private fun Hero(draft: Draft, profile: Profile, modifier: Modifier = Modifier) 
         MorphingBlob(
             scheme.primaryContainer,
             Modifier.size(140.dp).graphicsLayer { scaleX = pop.value; scaleY = pop.value },
-        ) { Text(draft.emoji, fontSize = 60.sp) }
+        ) { Text(draft.emoji, fontSize = 46.sp) }
         Spacer(Modifier.height(14.dp))
         Text(draft.name, style = MaterialTheme.typography.headlineSmall, textAlign = TextAlign.Center)
         CountUpText(price, { Fmt.money(it, profile.currency) }, MaterialTheme.typography.displayLarge)
@@ -432,7 +433,7 @@ private fun MeaningCard(
         ChoiceGroup(PurchaseType.entries, type, onType, { it.label }, leading = { it.emoji })
         Spacer(Modifier.height(18.dp))
         Label("Category")
-        Row(Modifier.horizontalScroll(rememberScrollState()), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+        Row(Modifier.bleed(22.dp).horizontalScroll(rememberScrollState()).padding(horizontal = 22.dp), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
             Category.entries.forEach { c ->
                 ChoiceChip(c.label, c == category, { onCategory(c) }, leading = c.emoji)
             }

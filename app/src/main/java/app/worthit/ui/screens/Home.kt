@@ -11,7 +11,12 @@ import androidx.compose.animation.shrinkVertically
 import androidx.compose.animation.slideInVertically
 import androidx.compose.animation.slideOutVertically
 import androidx.compose.animation.togetherWith
+import androidx.compose.foundation.background
 import androidx.compose.foundation.horizontalScroll
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.offset
+import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.graphics.lerp
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -76,6 +81,7 @@ import app.worthit.ui.components.sanitizeAmount
 import app.worthit.ui.components.screenPadding
 import app.worthit.ui.components.shape
 import app.worthit.ui.components.tick
+import app.worthit.ui.components.bleed
 import app.worthit.ui.theme.Motion
 import java.util.Calendar
 
@@ -173,7 +179,17 @@ private fun CalculatorCard(vm: AppViewModel, profile: Profile, modifier: Modifie
     val focus = LocalFocusManager.current
     val scheme = MaterialTheme.colorScheme
 
+    val gradient = Brush.linearGradient(
+        listOf(scheme.primaryContainer, lerp(scheme.primaryContainer, scheme.tertiaryContainer, 0.55f)),
+    )
     Surface(modifier.fillMaxWidth(), shape = RoundedCornerShape(40.dp), color = scheme.primaryContainer, contentColor = scheme.onPrimaryContainer) {
+      Box(Modifier.background(gradient)) {
+        MorphingBlob(
+            scheme.onPrimaryContainer.copy(alpha = 0.06f),
+            Modifier.align(Alignment.TopEnd).offset(x = 70.dp, y = (-60).dp).size(240.dp),
+            holdMillis = 3000,
+            spinMillis = 60_000,
+        )
         Column(Modifier.padding(24.dp)) {
             Text("What are you eyeing?", style = MaterialTheme.typography.titleMedium)
             Spacer(Modifier.height(14.dp))
@@ -270,6 +286,7 @@ private fun CalculatorCard(vm: AppViewModel, profile: Profile, modifier: Modifie
                 }
             }
         }
+      }
     }
 }
 
@@ -286,7 +303,7 @@ private fun ExampleChips(profile: Profile, onPick: (String, Double) -> Unit) {
     Column(Modifier.padding(top = 16.dp)) {
         Text("Or try one", style = MaterialTheme.typography.labelLarge, color = MaterialTheme.colorScheme.onPrimaryContainer.copy(alpha = 0.7f))
         Spacer(Modifier.height(8.dp))
-        Row(Modifier.horizontalScroll(rememberScrollState()), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+        Row(Modifier.bleed(24.dp).horizontalScroll(rememberScrollState()).padding(horizontal = 24.dp), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
             examples.forEach { (emoji, pair) ->
                 val (label, f) = pair
                 val price = Fmt.nice(base * f).coerceAtLeast(1.0)

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="splash_bg">#151311</color>
+    <color name="splash_bg">#121116</color>
 
     <style name="Theme.WorthIt" parent="android:Theme.Material.NoActionBar">
         <item name="android:windowBackground">@color/splash_bg</item>
