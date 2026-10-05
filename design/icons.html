@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Worth It · Icon concepts</title>
+<link href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,wght,ROND@6..144,400..900,0..100&display=swap" rel="stylesheet">
+<style>
+  :root { --bg: #FBF8FC; --card: #F5F2F7; --on: #1B1B21; --muted: #47464F; --chip: #E4DFFF; --on-chip: #1C1259; }
+  * { box-sizing: border-box; margin: 0; }
+  body { font-family: "Google Sans Flex", system-ui, sans-serif; background: var(--bg); color: var(--on); padding: 40px 16px 80px; }
+  .wrap { max-width: 1180px; margin: 0 auto; }
+  h1 { font-size: clamp(34px, 5vw, 52px); font-weight: 850; letter-spacing: -0.03em; font-variation-settings: "ROND" 100; }
+  .lede { color: var(--muted); font-size: 18px; margin-top: 8px; max-width: 46em; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; margin-top: 32px; }
+  .card { background: var(--card); border-radius: 32px; padding: 22px; display: flex; flex-direction: column; gap: 14px; }
+  .hero { display: flex; justify-content: center; padding: 8px 0; }
+  .hero svg { width: 168px; height: 168px; border-radius: 50%; box-shadow: 0 10px 30px -10px rgba(40,30,110,.35); }
+  .masks { display: flex; gap: 12px; justify-content: center; align-items: center; }
+  .masks svg { width: 56px; height: 56px; }
+  .masks .sq { border-radius: 18px; }
+  .masks .rs { border-radius: 30%; }
+  .masks .home { padding: 10px 12px; border-radius: 18px; background: linear-gradient(135deg, #3a3170, #1f4536); display: flex; flex-direction: column; align-items: center; gap: 4px; color: #fff; font-size: 11px; }
+  .masks .home svg { width: 44px; height: 44px; border-radius: 50%; }
+  .num { display: inline-grid; place-items: center; width: 30px; height: 30px; border-radius: 10px; background: var(--chip); color: var(--on-chip); font-weight: 800; font-size: 15px; margin-right: 8px; }
+  h2 { font-size: 21px; font-weight: 750; display: flex; align-items: center; font-variation-settings: "ROND" 100; }
+  p { color: var(--muted); font-size: 15px; line-height: 1.5; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Worth It · 8 icon concepts</h1>
+  <p class="lede">Each is drawn on Android's 108×108 adaptive-icon grid with the key art inside the safe zone, so it survives any launcher mask. Previews are cropped exactly as a launcher would. Big = circle mask; small row = squircle, rounded square and real home-screen size.</p>
+  <div class="grid" id="grid"></div>
+</div>
+
+<!-- Icon artwork (108×108 adaptive canvas) -->
+<template id="i1"><svg>
+  <rect width="108" height="108" fill="#5B4FC4"/>
+  <path data-shape="cookie9" data-r="31" fill="#FBF8FC"/>
+  <path d="M41 37h26M41 71h26" stroke="#5B4FC4" stroke-width="4" stroke-linecap="round"/>
+  <path d="M44 39h20l-10 14zM54 55l10 14H44z" fill="#5B4FC4" stroke="#5B4FC4" stroke-width="3" stroke-linejoin="round"/>
+  <path d="M49 43h10l-5 7z" fill="#FBF8FC"/>
+</svg></template>
+
+<template id="i2"><svg>
+  <rect width="108" height="108" fill="#2E5E49"/>
+  <circle cx="54" cy="57.5" r="28" fill="#C9831A"/>
+  <circle cx="54" cy="54" r="28" fill="#F6B73C"/>
+  <circle cx="54" cy="54" r="22" fill="none" stroke="#FFD77A" stroke-width="3"/>
+  <g fill="#7A4A0E"><rect x="52.5" y="35" width="3" height="6" rx="1.5"/><rect x="52.5" y="67" width="3" height="6" rx="1.5"/><rect x="35" y="52.5" width="6" height="3" rx="1.5"/><rect x="67" y="52.5" width="6" height="3" rx="1.5"/></g>
+  <path d="M54 54V41M54 54l9 6" stroke="#1C1259" stroke-width="4.5" stroke-linecap="round"/>
+  <circle cx="54" cy="54" r="3.5" fill="#1C1259"/>
+  <path d="M78 30l2 5 5 2-5 2-2 5-2-5-5-2 5-2z" fill="#FBF8FC"/>
+</svg></template>
+
+<template id="i3"><svg>
+  <rect width="108" height="108" fill="#FFDCC8"/><g transform="translate(54 54) scale(1.18) translate(-54 -54)">
+  <path d="M42 35c0 12 10 15 10 19s-10 7-10 19h24c0-12-10-15-10-19s10-7 10-19z" fill="#FBF8FC" stroke="#5B4FC4" stroke-width="3" stroke-linejoin="round"/>
+  <path d="M46 38h16c-1 6-6 9-8 11-2-2-7-5-8-11z" fill="#F6B73C"/>
+  <path d="M54 52v8" stroke="#F25C78" stroke-width="2" stroke-linecap="round" stroke-dasharray="2 3"/>
+  <path d="M54 71c-7-5-8.5-10-4.5-11.3 2-.6 3.8.7 4.5 2.3.7-1.6 2.5-2.9 4.5-2.3 4 1.3 2.5 6.3-4.5 11.3z" fill="#F25C78"/>
+  <rect x="37" y="30" width="34" height="6" rx="3" fill="#5B4FC4"/>
+  <rect x="37" y="72" width="34" height="6" rx="3" fill="#5B4FC4"/></g>
+</svg></template>
+
+<template id="i4"><svg>
+  <rect width="108" height="108" fill="#BDEFD4"/>
+  <path d="M39.9 63.5C31 59 29 45 37 37" fill="none" stroke="#1C1259" stroke-width="2.5" stroke-linecap="round"/>
+  <g transform="rotate(-28 54 56)">
+    <path d="M34 42h28l14 14-14 14H34z" fill="#5B4FC4" stroke="#5B4FC4" stroke-width="7" stroke-linejoin="round"/>
+    <circle cx="38" cy="56" r="3.6" fill="#BDEFD4"/>
+    <circle cx="56" cy="56" r="11" fill="#FBF8FC"/>
+    <path d="M56 56v-7M56 56l5 3" stroke="#1C1259" stroke-width="2.8" stroke-linecap="round"/>
+  </g>
+</svg></template>
+
+<template id="i5"><svg>
+  <rect width="108" height="108" fill="#5B4FC4"/>
+  <g transform="translate(54 54) scale(.92) translate(-54 -54)">
+    <rect x="52" y="38" width="4" height="32" rx="2" fill="#FBF8FC"/>
+    <rect x="41" y="69" width="26" height="6" rx="3" fill="#FBF8FC"/>
+    <circle cx="54" cy="36" r="4" fill="#FBF8FC"/>
+    <path d="M28 37l52 9" stroke="#FBF8FC" stroke-width="4" stroke-linecap="round"/>
+    <path d="M28 37l-6 15M28 37l6 15M80 46l-6 15M80 46l6 15" stroke="#C6BFFF" stroke-width="1.8"/>
+    <path d="M20 52h16a8 8 0 0 1-16 0zM72 61h16a8 8 0 0 1-16 0z" fill="#FBF8FC"/>
+    <circle cx="28" cy="46.5" r="5.5" fill="#F6B73C"/>
+    <path d="M80 59.5c-6-4.2-7.2-8.4-3.9-9.5 1.7-.5 3.3.6 3.9 2 .6-1.4 2.2-2.5 3.9-2 3.3 1.1 2.1 5.3-3.9 9.5z" fill="#F25C78"/>
+  </g>
+</svg></template>
+
+<template id="i6"><svg>
+  <rect width="108" height="108" fill="#5B4FC4"/>
+  <path data-shape="cookie12" data-r="30" data-dy="3" fill="#C9831A"/>
+  <path data-shape="cookie12" data-r="30" fill="#F6B73C"/>
+  <path d="M42 50q4-5 8 0M58 50q4-5 8 0" fill="none" stroke="#1C1259" stroke-width="3.5" stroke-linecap="round"/>
+  <path d="M45 59q9 9 18 0" fill="none" stroke="#1C1259" stroke-width="3.5" stroke-linecap="round"/>
+  <circle cx="40" cy="58" r="3.5" fill="#F25C78" opacity=".55"/>
+  <circle cx="68" cy="58" r="3.5" fill="#F25C78" opacity=".55"/>
+  <path d="M77 29l2.2 5.3 5.3 2.2-5.3 2.2-2.2 5.3-2.2-5.3-5.3-2.2 5.3-2.2z" fill="#FBF8FC"/>
+</svg></template>
+
+<template id="i7"><svg>
+  <rect width="108" height="108" fill="#E4DFFF"/>
+  <rect x="31" y="34" width="46" height="44" rx="10" fill="#FBF8FC"/>
+  <path d="M31 44a10 10 0 0 1 10-10h26a10 10 0 0 1 10 10v2H31z" fill="#5B4FC4"/>
+  <rect x="40" y="29" width="4" height="10" rx="2" fill="#1C1259"/>
+  <rect x="64" y="29" width="4" height="10" rx="2" fill="#1C1259"/>
+  <g fill="#5B4FC4"><circle cx="41" cy="54" r="3.6"/><circle cx="50" cy="54" r="3.6"/><circle cx="59" cy="54" r="3.6"/><circle cx="68" cy="54" r="3.6"/><circle cx="41" cy="63" r="3.6"/></g>
+  <path d="M50 59.4a3.6 3.6 0 1 1 0 7.2z" fill="#5B4FC4"/>
+  <circle cx="50" cy="63" r="3.6" fill="none" stroke="#5B4FC4" stroke-width="1"/>
+  <g fill="#E3E0E6"><circle cx="59" cy="63" r="3.6"/><circle cx="41" cy="72" r="3.6"/><circle cx="50" cy="72" r="3.6"/></g>
+  <circle cx="72" cy="72" r="11" fill="#C9831A"/>
+  <circle cx="72" cy="70" r="11" fill="#F6B73C"/>
+  <circle cx="72" cy="70" r="7" fill="none" stroke="#FFD77A" stroke-width="2"/>
+</svg></template>
+
+<template id="i8"><svg>
+  <rect width="108" height="108" fill="#356A53"/>
+  <path data-shape="clover8" data-r="31" data-rot="22.5" fill="#BDEFD4"/>
+  <path d="M40 55l9 9 19-20" fill="none" stroke="#002115" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="54" cy="31.5" r="2.4" fill="#356A53"/><circle cx="76.5" cy="54" r="2.4" fill="#356A53"/><circle cx="54" cy="76.5" r="2.4" fill="#356A53"/><circle cx="31.5" cy="54" r="2.4" fill="#356A53"/>
+  <path d="M77 27l1.8 4.2 4.2 1.8-4.2 1.8-1.8 4.2-1.8-4.2-4.2-1.8 4.2-1.8z" fill="#F6B73C"/>
+</svg></template>
+
+<script>
+  const META = [
+    ['Cookie hourglass', 'The current icon, refined: an expressive Material “cookie” coin holding an hourglass. Calm, clear, very on-brand.'],
+    ['Coin clock', 'A gold coin that is literally a clock. Money ↔ time in a single glance. Warm gold on deep sage.'],
+    ['Sand into love', 'An hourglass where golden sand falls and lands as a heart. Your time becoming something you love.'],
+    ['Price-tag timer', 'A tilted price tag with a clock face in it. Every price is a time price. Playful, readable at any size.'],
+    ['Weighing it up', 'A balance scale with a coin on one side and a heart on the other, and the heart wins. The question, “is it worth it?”, drawn.'],
+    ['Happy coin', 'A cheerful scalloped coin mascot with a sparkle. The friendliest, most playful option, pure delight on a home screen.'],
+    ['Day grid', 'A calendar showing the app’s signature dot grid: days filling up like little pies, with a gold coin. Straight from the product.'],
+    ['Worth it ✓', 'A big confident check on a clover shape with four little clock ticks. The verdict: definitely worth it.'],
+  ];
+  const SHAPES = { cookie9: [9, .07], cookie12: [12, .045], clover4: [4, .2], clover8: [8, .12] };
+  const FIT = { i1: .8, i2: .8, i3: .76, i4: .9, i5: .96, i6: .8, i7: .92, i8: .8 };
+  function shapePath(name, r, cx = 54, cy = 54, rotDeg = 0) {
+    const [n, a] = SHAPES[name], N = 180, rot = rotDeg * Math.PI / 180, scale = r / (1 + a);
+    const pts = Array.from({ length: N }, (_, i) => {
+      const t = i / N * Math.PI * 2, k = 1 + a * Math.cos(n * t);
+      return [cx + scale * k * Math.cos(t + rot), cy + scale * k * Math.sin(t + rot)];
+    });
+    let d = '';
+    for (let i = 0; i <= N; i++) {
+      const p = pts[i % N], q = pts[(i + 1) % N], m = [(p[0] + q[0]) / 2, (p[1] + q[1]) / 2];
+      d += i === 0 ? `M${m[0].toFixed(2)} ${m[1].toFixed(2)}` : `Q${p[0].toFixed(2)} ${p[1].toFixed(2)} ${m[0].toFixed(2)} ${m[1].toFixed(2)}`;
+    }
+    return d + 'Z';
+  }
+  function svg(id, cls = '') {
+    const s = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    s.setAttribute('viewBox', '18 18 72 72'); // what launchers actually show
+    if (cls) s.setAttribute('class', cls);
+    s.innerHTML = document.getElementById(id).content.querySelector('svg').innerHTML;
+    const art = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+    art.setAttribute('transform', `translate(54 54) scale(${FIT[id]}) translate(-54 -54)`);
+    [...s.children].slice(1).forEach((n) => art.appendChild(n));
+    s.appendChild(art);
+    s.querySelectorAll('[data-shape]').forEach((p) => p.setAttribute('d', shapePath(p.dataset.shape, Number(p.dataset.r), 54, 54 + Number(p.dataset.dy || 0), Number(p.dataset.rot || 0))));
+    return s;
+  }
+  const grid = document.getElementById('grid');
+  META.forEach(([name, idea], i) => {
+    const id = 'i' + (i + 1);
+    const card = document.createElement('div'); card.className = 'card';
+    const hero = document.createElement('div'); hero.className = 'hero'; hero.appendChild(svg(id));
+    const masks = document.createElement('div'); masks.className = 'masks';
+    masks.appendChild(svg(id, 'sq')); masks.appendChild(svg(id, 'rs'));
+    const home = document.createElement('div'); home.className = 'home'; home.appendChild(svg(id)); home.append('Worth It');
+    masks.appendChild(home);
+    card.append(hero, masks);
+    card.insertAdjacentHTML('beforeend', `<h2><span class="num">${i + 1}</span>${name}</h2><p>${idea}</p>`);
+    grid.appendChild(card);
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Worth It · Icon round 2</title>
+<link href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,wght,ROND@6..144,400..900,0..100&display=swap" rel="stylesheet">
+<style>
+  :root { --bg: #FBF8FC; --card: #F5F2F7; --on: #1B1B21; --muted: #47464F; --chip: #E4DFFF; --on-chip: #1C1259; }
+  * { box-sizing: border-box; margin: 0; }
+  body { font-family: "Google Sans Flex", system-ui, sans-serif; background: var(--bg); color: var(--on); padding: 40px 16px 80px; }
+  .wrap { max-width: 1180px; margin: 0 auto; }
+  h1 { font-size: clamp(34px, 5vw, 52px); font-weight: 850; letter-spacing: -0.03em; font-variation-settings: "ROND" 100; }
+  h3 { font-size: 26px; font-weight: 800; margin-top: 40px; font-variation-settings: "ROND" 100; }
+  .lede { color: var(--muted); font-size: 18px; margin-top: 8px; max-width: 46em; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 16px; margin-top: 16px; }
+  .card { background: var(--card); border-radius: 32px; padding: 22px; display: flex; flex-direction: column; gap: 14px; }
+  .hero { display: flex; justify-content: center; padding: 8px 0; }
+  .hero svg { width: 168px; height: 168px; border-radius: 50%; box-shadow: 0 10px 30px -10px rgba(40,30,110,.35); }
+  .masks { display: flex; gap: 12px; justify-content: center; align-items: center; }
+  .masks svg { width: 56px; height: 56px; }
+  .masks .sq { border-radius: 18px; }
+  .masks .rs { border-radius: 30%; }
+  .masks .home { padding: 10px 12px; border-radius: 18px; background: linear-gradient(135deg, #3a3170, #1f4536); display: flex; flex-direction: column; align-items: center; gap: 4px; color: #fff; font-size: 11px; }
+  .masks .home svg { width: 44px; height: 44px; border-radius: 50%; }
+  .num { display: inline-grid; place-items: center; min-width: 34px; height: 30px; padding: 0 6px; border-radius: 10px; background: var(--chip); color: var(--on-chip); font-weight: 800; font-size: 15px; margin-right: 8px; }
+  h2 { font-size: 21px; font-weight: 750; display: flex; align-items: center; font-variation-settings: "ROND" 100; }
+  p { color: var(--muted); font-size: 15px; line-height: 1.5; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Round 2 · Scales &amp; Happy coin</h1>
+  <p class="lede">Variations on your two favourites, plus two hybrids that put them together. Previews are cropped exactly as a launcher would show them.</p>
+  <h3>⚖️ Scales</h3><div class="grid" id="g-s"></div>
+  <h3>😊 Happy coin</h3><div class="grid" id="g-c"></div>
+  <h3>✨ Hybrids</h3><div class="grid" id="g-h"></div>
+</div>
+
+<!-- ===== Scales ===== -->
+<template id="S1"><svg>
+  <rect width="108" height="108" fill="#5B4FC4"/>
+  <rect x="51" y="36" width="6" height="32" rx="3" fill="#FBF8FC"/>
+  <rect x="38" y="67" width="32" height="8" rx="4" fill="#FBF8FC"/>
+  <path d="M26 36L82 46" stroke="#FBF8FC" stroke-width="5" stroke-linecap="round"/>
+  <circle cx="54" cy="40.5" r="5" fill="#FBF8FC"/>
+  <path d="M26 36l-7 16M26 36l7 16M82 46l-7 16M82 46l7 16" stroke="#C6BFFF" stroke-width="2"/>
+  <path d="M17 52h18a9 9 0 0 1-18 0zM73 62h18a9 9 0 0 1-18 0z" fill="#FBF8FC"/>
+  <circle cx="26" cy="45.5" r="6.5" fill="#F6B73C"/><circle cx="26" cy="45.5" r="3.8" fill="none" stroke="#FFD77A" stroke-width="1.5"/>
+  <path data-heart="82 55.5 1.15" fill="#F25C78"/>
+</svg></template>
+
+<template id="S2"><svg>
+  <rect width="108" height="108" fill="#BDEFD4"/>
+  <path d="M54 52l12 22H42z" fill="#5B4FC4" stroke="#5B4FC4" stroke-width="4" stroke-linejoin="round"/>
+  <path d="M24 44l60 12" stroke="#5B4FC4" stroke-width="7" stroke-linecap="round"/>
+  <circle cx="31" cy="38" r="9" fill="#C9831A"/><circle cx="31" cy="36" r="9" fill="#F6B73C"/><circle cx="31" cy="36" r="5.5" fill="none" stroke="#FFD77A" stroke-width="2"/>
+  <path data-heart="78 45.5 1.6" fill="#F25C78"/>
+</svg></template>
+
+<template id="S3"><svg>
+  <rect width="108" height="108" fill="#FFDCC8"/>
+  <path d="M47 40c0 8 6 10 6 14s-6 6-6 14h14c0-8-6-10-6-14s6-6 6-14z" fill="#FBF8FC" stroke="#5B4FC4" stroke-width="3" stroke-linejoin="round"/>
+  <path d="M50 42h8c-.6 3-3 5-4 6-1-1-3.4-3-4-6z" fill="#F6B73C"/>
+  <path d="M49 67c1-3 3-4 5-4s4 1 5 4z" fill="#F6B73C"/>
+  <rect x="44" y="36" width="20" height="5" rx="2.5" fill="#5B4FC4"/>
+  <rect x="44" y="67" width="20" height="5" rx="2.5" fill="#5B4FC4"/>
+  <path d="M26 30l56 8" stroke="#5B4FC4" stroke-width="4" stroke-linecap="round"/>
+  <circle cx="54" cy="34" r="3.5" fill="#5B4FC4"/>
+  <path d="M26 30l-6 16M26 30l6 16M82 38l-6 16M82 38l6 16" stroke="#5B4FC4" stroke-width="1.6" opacity=".6"/>
+  <path d="M18 46h16a8 8 0 0 1-16 0zM74 54h16a8 8 0 0 1-16 0z" fill="#5B4FC4"/>
+  <circle cx="26" cy="40.5" r="5.5" fill="#F6B73C"/>
+  <path data-heart="82 48.6 1" fill="#F25C78"/>
+</svg></template>
+
+<template id="S4"><svg>
+  <rect width="108" height="108" fill="#1C1259"/>
+  <rect x="51" y="36" width="6" height="32" rx="3" fill="#F6B73C"/>
+  <rect x="38" y="67" width="32" height="8" rx="4" fill="#F6B73C"/>
+  <path d="M26 36L82 46" stroke="#F6B73C" stroke-width="5" stroke-linecap="round"/>
+  <circle cx="54" cy="40.5" r="5" fill="#F6B73C"/>
+  <path d="M26 36l-7 16M26 36l7 16M82 46l-7 16M82 46l7 16" stroke="#FFD77A" stroke-width="2" opacity=".7"/>
+  <path d="M17 52h18a9 9 0 0 1-18 0zM73 62h18a9 9 0 0 1-18 0z" fill="#F6B73C"/>
+  <circle cx="26" cy="45" r="7" fill="#FBF8FC"/>
+  <path d="M26 45v-4.2M26 45l3 1.8" stroke="#1C1259" stroke-width="1.8" stroke-linecap="round"/>
+  <path data-heart="82 55.5 1.15" fill="#F25C78"/>
+  <path data-spark="80 28 5" fill="#C6BFFF"/>
+</svg></template>
+
+<!-- ===== Happy coins ===== -->
+<template id="C1"><svg>
+  <rect width="108" height="108" fill="#FFDCC8"/>
+  <path data-shape="cookie12" data-r="30" data-cy="57" fill="#C9831A"/>
+  <path data-shape="cookie12" data-r="30" fill="#F6B73C"/>
+  <circle cx="45" cy="49" r="3.6" fill="#1C1259"/><circle cx="46.2" cy="47.8" r="1.2" fill="#FBF8FC"/>
+  <path d="M58 49q4 3.5 8 0" fill="none" stroke="#1C1259" stroke-width="3.5" stroke-linecap="round"/>
+  <path d="M44 58q10 13 20 0z" fill="#1C1259" stroke="#1C1259" stroke-width="2" stroke-linejoin="round"/>
+  <path d="M49.5 63.6q4.5-3.6 9 0q-4.5 4.4-9 0z" fill="#F25C78"/>
+  <circle cx="39" cy="57" r="3.5" fill="#F25C78" opacity=".5"/><circle cx="69" cy="57" r="3.5" fill="#F25C78" opacity=".5"/>
+  <path data-spark="78 28 6" fill="#5B4FC4"/>
+</svg></template>
+
+<template id="C2"><svg>
+  <rect width="108" height="108" fill="#BDEFD4"/>
+  <path data-shape="cookie12" data-r="30" data-cy="57" fill="#C9831A"/>
+  <path data-shape="cookie12" data-r="30" fill="#F6B73C"/>
+  <path data-heart="45 49.5 .78" fill="#F25C78"/>
+  <path data-heart="63 49.5 .78" fill="#F25C78"/>
+  <path d="M45 59q9 9 18 0" fill="none" stroke="#1C1259" stroke-width="3.5" stroke-linecap="round"/>
+  <circle cx="39" cy="58" r="3.3" fill="#F25C78" opacity=".45"/><circle cx="69" cy="58" r="3.3" fill="#F25C78" opacity=".45"/>
+  <path data-heart="79 30 .7" fill="#F25C78"/>
+</svg></template>
+
+<template id="C3"><svg>
+  <rect width="108" height="108" fill="#5B4FC4"/>
+  <path data-shape="cookie12" data-r="30" data-cy="57" fill="#C9831A"/>
+  <path data-shape="cookie12" data-r="30" fill="#F6B73C"/>
+  <path data-spark="45 49 6.5" fill="#1C1259"/>
+  <path data-spark="63 49 6.5" fill="#1C1259"/>
+  <path d="M44 58q10 13 20 0z" fill="#1C1259" stroke="#1C1259" stroke-width="2" stroke-linejoin="round"/>
+  <path d="M49.5 63.6q4.5-3.6 9 0q-4.5 4.4-9 0z" fill="#F25C78"/>
+  <path data-spark="79 28 6" fill="#FBF8FC"/>
+  <path data-spark="28 76 3.5" fill="#C6BFFF"/>
+</svg></template>
+
+<template id="C4"><svg>
+  <rect width="108" height="108" fill="#356A53"/>
+  <path data-shape="cookie12" data-r="28" data-cx="50" data-cy="53" fill="#C9831A"/>
+  <path data-shape="cookie12" data-r="28" data-cx="50" data-cy="50" fill="#F6B73C"/>
+  <path d="M39 47q4-5 8 0M53 47q4-5 8 0" fill="none" stroke="#1C1259" stroke-width="3.4" stroke-linecap="round"/>
+  <path d="M41 55q9 9 18 0" fill="none" stroke="#1C1259" stroke-width="3.4" stroke-linecap="round"/>
+  <circle cx="36" cy="54" r="3.2" fill="#F25C78" opacity=".5"/><circle cx="64" cy="54" r="3.2" fill="#F25C78" opacity=".5"/>
+  <circle cx="74" cy="74" r="13" fill="#FBF8FC" stroke="#356A53" stroke-width="3"/>
+  <path d="M69.5 67.5h9c0 4-3.4 5-3.4 6.5s3.4 2.5 3.4 6.5h-9c0-4 3.4-5 3.4-6.5s-3.4-2.5-3.4-6.5z" fill="#5B4FC4" stroke="#5B4FC4" stroke-width="1.6" stroke-linejoin="round"/>
+</svg></template>
+
+<!-- ===== Hybrids ===== -->
+<template id="H1"><svg>
+  <rect width="108" height="108" fill="#5B4FC4"/>
+  <path d="M28 36L80 44" stroke="#FBF8FC" stroke-width="4.5" stroke-linecap="round"/>
+  <path d="M28 36l-6 14M28 36l6 14M80 44l-6 14M80 44l6 14" stroke="#C6BFFF" stroke-width="1.8"/>
+  <path d="M20 50h16a8 8 0 0 1-16 0zM72 58h16a8 8 0 0 1-16 0z" fill="#FBF8FC"/>
+  <circle cx="28" cy="45" r="5" fill="#FBF8FC" stroke="#C6BFFF" stroke-width="1.5"/>
+  <path d="M28 45v-3M28 45l2.2 1.3" stroke="#1C1259" stroke-width="1.5" stroke-linecap="round"/>
+  <path data-heart="80 52.5 1" fill="#F25C78"/>
+  <path data-shape="cookie12" data-r="19" data-cy="65" fill="#C9831A"/>
+  <path data-shape="cookie12" data-r="19" data-cy="62" fill="#F6B73C"/>
+  <circle cx="54" cy="41.5" r="3.2" fill="#FBF8FC"/>
+  <path d="M46.5 60q2.5-3 5 0M56.5 60q2.5-3 5 0" fill="none" stroke="#1C1259" stroke-width="2.6" stroke-linecap="round"/>
+  <path d="M48.5 66q5.5 5.5 11 0" fill="none" stroke="#1C1259" stroke-width="2.6" stroke-linecap="round"/>
+  <circle cx="44.5" cy="65" r="2.2" fill="#F25C78" opacity=".5"/><circle cx="63.5" cy="65" r="2.2" fill="#F25C78" opacity=".5"/>
+</svg></template>
+
+<template id="H2"><svg>
+  <rect width="108" height="108" fill="#FFDCC8"/>
+  <path d="M54 52l12 22H42z" fill="#5B4FC4" stroke="#5B4FC4" stroke-width="4" stroke-linejoin="round"/>
+  <path d="M22 43l64 13" stroke="#5B4FC4" stroke-width="7" stroke-linecap="round"/>
+  <path data-shape="cookie12" data-r="11.5" data-cx="31" data-cy="35" fill="#C9831A"/>
+  <path data-shape="cookie12" data-r="11.5" data-cx="31" data-cy="33" fill="#F6B73C"/>
+  <path d="M26.3 32q1.7-2.2 3.4 0M32.3 32q1.7-2.2 3.4 0" fill="none" stroke="#1C1259" stroke-width="1.9" stroke-linecap="round"/>
+  <path d="M27.5 36.5q3.5 3.5 7 0" fill="none" stroke="#1C1259" stroke-width="1.9" stroke-linecap="round"/>
+  <path data-heart="78 44.6 1.75" fill="#F25C78"/>
+  <path d="M74.2 42.5q1.4-1.6 2.8 0M79 42.5q1.4-1.6 2.8 0" fill="none" stroke="#1C1259" stroke-width="1.7" stroke-linecap="round"/>
+  <path d="M75.5 46q2.5 2.4 5 0" fill="none" stroke="#1C1259" stroke-width="1.7" stroke-linecap="round"/>
+</svg></template>
+
+<script>
+  const SETS = {
+    'g-s': [
+      ['S1', 'Scales, refined', 'Bolder lines and bigger pans so it reads at small sizes. Coin up, heart down: joy outweighs money.', .8],
+      ['S2', 'Seesaw', 'Stripped right back: a chunky seesaw with a big gold coin vs a big heart. The most legible at 44px.', .8],
+      ['S3', 'Hourglass scale', 'The scale’s pillar is an hourglass, so time is literally what holds the balance. On warm apricot.', .84],
+      ['S4', 'Time vs joy', 'A gold scale on midnight ink weighing a clock against a heart. You’re trading time for joy.', .8],
+    ],
+    'g-c': [
+      ['C1', 'Cheeky coin', 'Winking, tongue out, rosy cheeks. Maximum personality on soft apricot.', .8],
+      ['C2', 'Heart-eyes coin', 'In love with a purchase that’s actually worth it. Heart eyes on fresh mint.', .8],
+      ['C3', 'Starstruck coin', 'Sparkly star eyes and a big grin on iris. Pure delight.', .8],
+      ['C4', 'Coin & hourglass', 'The happy coin with a little hourglass buddy: money + time, still super friendly.', .86],
+    ],
+    'g-h': [
+      ['H1', 'Balancing act', 'The happy coin is the scale, balancing a clock against a heart on its head. Fun and full of meaning.', .82],
+      ['H2', 'Kawaii seesaw', 'A smiling coin and a smiling heart on a seesaw, and the heart is winning. Playful and instantly clear.', .8],
+    ],
+  };
+  const SHAPES = { cookie12: [12, .045] };
+  function shapePath(name, r, cx, cy) {
+    const [n, a] = SHAPES[name], N = 180, scale = r / (1 + a);
+    const pts = Array.from({ length: N }, (_, i) => { const t = i / N * Math.PI * 2, k = 1 + a * Math.cos(n * t); return [cx + scale * k * Math.cos(t), cy + scale * k * Math.sin(t)]; });
+    let d = '';
+    for (let i = 0; i <= N; i++) { const p = pts[i % N], q = pts[(i + 1) % N], m = [(p[0] + q[0]) / 2, (p[1] + q[1]) / 2]; d += i === 0 ? `M${m[0].toFixed(2)} ${m[1].toFixed(2)}` : `Q${p[0].toFixed(2)} ${p[1].toFixed(2)} ${m[0].toFixed(2)} ${m[1].toFixed(2)}`; }
+    return d + 'Z';
+  }
+  // Heart ~17×11 units at scale 1, centred on (cx, cy).
+  const heart = (cx, cy, s) => { const P = (x, y) => `${(cx + x * s).toFixed(2)} ${(cy + y * s).toFixed(2)}`; return `M${P(0, 6)}C${P(-7, 1)} ${P(-8.5, -4)} ${P(-4.5, -5.3)}C${P(-2.5, -5.9)} ${P(-.7, -4.6)} ${P(0, -3)}C${P(.7, -4.6)} ${P(2.5, -5.9)} ${P(4.5, -5.3)}C${P(8.5, -4)} ${P(7, 1)} ${P(0, 6)}Z`; };
+  // Four-point sparkle with soft concave sides.
+  const spark = (cx, cy, r) => { const k = r * .28, P = (x, y) => `${(cx + x).toFixed(2)} ${(cy + y).toFixed(2)}`; return `M${P(0, -r)}Q${P(k, -k)} ${P(r, 0)}Q${P(k, k)} ${P(0, r)}Q${P(-k, k)} ${P(-r, 0)}Q${P(-k, -k)} ${P(0, -r)}Z`; };
+  function svg(id, fit, cls = '') {
+    const s = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    s.setAttribute('viewBox', '18 18 72 72');
+    if (cls) s.setAttribute('class', cls);
+    s.innerHTML = document.getElementById(id).content.querySelector('svg').innerHTML;
+    s.querySelectorAll('[data-shape]').forEach((p) => p.setAttribute('d', shapePath(p.dataset.shape, +p.dataset.r, +(p.dataset.cx || 54), +(p.dataset.cy || 54))));
+    s.querySelectorAll('[data-heart]').forEach((p) => { const [x, y, k] = p.dataset.heart.split(' ').map(Number); p.setAttribute('d', heart(x, y, k)); });
+    s.querySelectorAll('[data-spark]').forEach((p) => { const [x, y, r] = p.dataset.spark.split(' ').map(Number); p.setAttribute('d', spark(x, y, r)); });
+    const g = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+    g.setAttribute('transform', `translate(54 54) scale(${fit}) translate(-54 -54)`);
+    [...s.children].slice(1).forEach((n) => g.appendChild(n));
+    s.appendChild(g);
+    return s;
+  }
+  for (const [gid, items] of Object.entries(SETS)) {
+    const grid = document.getElementById(gid);
+    items.forEach(([id, name, idea, fit]) => {
+      const card = document.createElement('div'); card.className = 'card';
+      const hero = document.createElement('div'); hero.className = 'hero'; hero.appendChild(svg(id, fit));
+      const masks = document.createElement('div'); masks.className = 'masks';
+      masks.appendChild(svg(id, fit, 'sq')); masks.appendChild(svg(id, fit, 'rs'));
+      const home = document.createElement('div'); home.className = 'home'; home.appendChild(svg(id, fit)); home.append('Worth It');
+      masks.appendChild(home);
+      card.append(hero, masks);
+      card.insertAdjacentHTML('beforeend', `<h2><span class="num">${id}</span>${name}</h2><p>${idea}</p>`);
+      grid.appendChild(card);
+    });
+  }
+</script>
+</body>
+</html>

@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Worth It · Icon round 4</title>
+<link href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,wght,ROND@6..144,400..900,0..100&display=swap" rel="stylesheet">
+<style>
+  :root { --bg: #FBF8FC; --card: #F5F2F7; --on: #1B1B21; --muted: #47464F; --chip: #E4DFFF; --on-chip: #1C1259; }
+  * { box-sizing: border-box; margin: 0; }
+  body { font-family: "Google Sans Flex", system-ui, sans-serif; background: var(--bg); color: var(--on); padding: 40px 16px 80px; }
+  .wrap { max-width: 1180px; margin: 0 auto; }
+  h1 { font-size: clamp(34px, 5vw, 52px); font-weight: 850; letter-spacing: -0.03em; font-variation-settings: "ROND" 100; }
+  .lede { color: var(--muted); font-size: 18px; margin-top: 8px; max-width: 46em; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 16px; margin-top: 28px; }
+  .card { background: var(--card); border-radius: 32px; padding: 22px; display: flex; flex-direction: column; gap: 14px; }
+  .hero { display: flex; justify-content: center; padding: 8px 0; }
+  .hero svg { width: 168px; height: 168px; border-radius: 50%; box-shadow: 0 10px 30px -10px rgba(40,30,110,.35); }
+  .masks { display: flex; gap: 12px; justify-content: center; align-items: center; }
+  .masks svg { width: 56px; height: 56px; }
+  .masks .sq { border-radius: 18px; }
+  .masks .rs { border-radius: 30%; }
+  .masks .home { padding: 10px 12px; border-radius: 18px; background: linear-gradient(135deg, #3a3170, #1f4536); display: flex; flex-direction: column; align-items: center; gap: 4px; color: #fff; font-size: 11px; }
+  .masks .home svg { width: 44px; height: 44px; border-radius: 50%; }
+  .num { display: inline-grid; place-items: center; min-width: 34px; height: 30px; padding: 0 6px; border-radius: 10px; background: var(--chip); color: var(--on-chip); font-weight: 800; font-size: 15px; margin-right: 8px; }
+  h2 { font-size: 21px; font-weight: 750; display: flex; align-items: center; font-variation-settings: "ROND" 100; }
+  p { color: var(--muted); font-size: 15px; line-height: 1.5; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Round 4 · Happy coin + money + time</h1>
+  <p class="lede">The happy coin mascot, now trading in time too: clocks, hourglasses, stopwatches, alarms and calendars. Previews are cropped exactly as a launcher would show them.</p>
+  <div class="grid" id="grid"></div>
+</div>
+
+<script>
+  /* ---------- Palette ---------- */
+  const C = {
+    iris: '#5B4FC4', irisDark: '#4A3FB0', irisLight: '#C6BFFF', ink: '#1C1259', cream: '#FBF8FC',
+    gold: '#F6B73C', goldDark: '#C9831A', goldLight: '#FFD77A', pink: '#F25C78',
+    mint: '#BDEFD4', sage: '#356A53', apricot: '#FFDCC8',
+    note: '#6CC69A', noteDark: '#2E7D5B', noteLight: '#D3F5E2',
+  };
+
+  /* ---------- Building blocks ---------- */
+  function cookie(cx, cy, r, n = 12, a = .045) {
+    const N = 180, sc = r / (1 + a);
+    const pts = Array.from({ length: N }, (_, i) => { const t = i / N * Math.PI * 2, k = 1 + a * Math.cos(n * t); return [cx + sc * k * Math.cos(t), cy + sc * k * Math.sin(t)]; });
+    let d = '';
+    for (let i = 0; i <= N; i++) { const p = pts[i % N], q = pts[(i + 1) % N], m = [(p[0] + q[0]) / 2, (p[1] + q[1]) / 2]; d += i === 0 ? `M${m[0].toFixed(2)} ${m[1].toFixed(2)}` : `Q${p[0].toFixed(2)} ${p[1].toFixed(2)} ${m[0].toFixed(2)} ${m[1].toFixed(2)}`; }
+    return d + 'Z';
+  }
+  const coin = (cx, cy, r) =>
+    `<path d="${cookie(cx, cy + r * .1, r)}" fill="${C.goldDark}"/><path d="${cookie(cx, cy, r)}" fill="${C.gold}"/>`;
+  const plainCoin = (cx, cy, r) =>
+    `<circle cx="${cx}" cy="${cy + r * .18}" r="${r}" fill="${C.goldDark}"/><circle cx="${cx}" cy="${cy}" r="${r}" fill="${C.gold}"/><circle cx="${cx}" cy="${cy}" r="${r * .62}" fill="none" stroke="${C.goldLight}" stroke-width="${r * .16}"/>`;
+  const rupee = (cx, cy, s, color, w = 2.2) =>
+    `<path transform="translate(${cx} ${cy}) scale(${s})" d="M-4 -6H4M-4 -2.5H4M-2 -6C3 -6 3 1 -2 1H-4L3 7" fill="none" stroke="${color}" stroke-width="${w}" stroke-linecap="round" stroke-linejoin="round"/>`;
+  const spark = (cx, cy, r, color) => { const k = r * .28, P = (x, y) => `${(cx + x).toFixed(2)} ${(cy + y).toFixed(2)}`; return `<path d="M${P(0, -r)}Q${P(k, -k)} ${P(r, 0)}Q${P(k, k)} ${P(0, r)}Q${P(-k, k)} ${P(-r, 0)}Q${P(-k, -k)} ${P(0, -r)}Z" fill="${color}"/>`; };
+  const note = (cx, cy, w, h, rot = 0) =>
+    `<g transform="rotate(${rot} ${cx} ${cy})">
+      <rect x="${cx - w / 2}" y="${cy - h / 2}" width="${w}" height="${h}" rx="3.5" fill="${C.note}" stroke="${C.noteDark}" stroke-width="1.8"/>
+      <rect x="${cx - w / 2 + 3.5}" y="${cy - h / 2 + 3.5}" width="${w - 7}" height="${h - 7}" rx="2" fill="none" stroke="${C.noteDark}" stroke-width=".9" opacity=".45"/>
+      <circle cx="${cx}" cy="${cy}" r="${h * .27}" fill="${C.noteLight}"/>${rupee(cx, cy, h / 42, C.noteDark, 2.4)}
+    </g>`;
+  // Faces are drawn for a coin of radius 30, then scaled with s.
+  function face(cx, cy, s, kind = 'happy') {
+    const ink = C.ink;
+    const cheeks = `<circle cx="-15" cy="4" r="3.5" fill="${C.pink}" opacity=".5"/><circle cx="15" cy="4" r="3.5" fill="${C.pink}" opacity=".5"/>`;
+    const happyEyes = `<path d="M-12 -4q4-5 8 0M4 -4q4-5 8 0" fill="none" stroke="${ink}" stroke-width="3.5" stroke-linecap="round"/>`;
+    const smile = `<path d="M-9 5q9 9 18 0" fill="none" stroke="${ink}" stroke-width="3.5" stroke-linecap="round"/>`;
+    const grin = `<path d="M-10 4q10 13 20 0z" fill="${ink}" stroke="${ink}" stroke-width="2" stroke-linejoin="round"/><path d="M-4.5 9.6q4.5-3.6 9 0q-4.5 4.4-9 0z" fill="${C.pink}"/>`;
+    let inner = '';
+    if (kind === 'happy') inner = happyEyes + smile + cheeks;
+    if (kind === 'grin') inner = happyEyes + grin + cheeks;
+    if (kind === 'wink') inner = `<circle cx="-9" cy="-5" r="3.6" fill="${ink}"/><circle cx="-7.8" cy="-6.2" r="1.2" fill="${C.cream}"/><path d="M4 -5q4 3.5 8 0" fill="none" stroke="${ink}" stroke-width="3.5" stroke-linecap="round"/>` + grin + cheeks;
+    if (kind === 'rich') inner =
+      rupee(-9, -6, .95, C.noteDark, 2.6) + rupee(9, -6, .95, C.noteDark, 2.6) +
+      `<path d="M-11 4q11 14 22 0z" fill="${ink}" stroke="${ink}" stroke-width="2" stroke-linejoin="round"/>` +
+      `<g transform="rotate(-8 0 13)"><rect x="-6" y="9" width="12" height="10" rx="2" fill="${C.note}" stroke="${C.noteDark}" stroke-width="1.2"/><circle cx="0" cy="14" r="2" fill="${C.noteLight}"/></g>` + cheeks;
+    if (kind === 'dots') inner = `<circle cx="-8" cy="-4" r="3.2" fill="${ink}"/><circle cx="8" cy="-4" r="3.2" fill="${ink}"/><path d="M-7 5q7 7 14 0" fill="none" stroke="${ink}" stroke-width="3.2" stroke-linecap="round"/>` + cheeks;
+    return `<g transform="translate(${cx} ${cy}) scale(${s})">${inner}</g>`;
+  }
+
+  /* ---------- Time pieces ---------- */
+  const arc = (cx, cy, r, a0, a1) => {
+    const p = (a) => [cx + r * Math.sin(a * Math.PI / 180), cy - r * Math.cos(a * Math.PI / 180)];
+    const [x0, y0] = p(a0), [x1, y1] = p(a1);
+    return `M${x0.toFixed(2)} ${y0.toFixed(2)}A${r} ${r} 0 ${a1 - a0 > 180 ? 1 : 0} 1 ${x1.toFixed(2)} ${y1.toFixed(2)}`;
+  };
+  const clock = (cx, cy, r, rim = C.iris) =>
+    `<circle cx="${cx}" cy="${cy}" r="${r}" fill="${C.cream}" stroke="${rim}" stroke-width="${Math.max(2, r * .18)}"/>
+     <path d="M${cx} ${cy}V${cy - r * .58}M${cx} ${cy}L${cx + r * .42} ${cy + r * .22}" stroke="${C.ink}" stroke-width="${Math.max(1.6, r * .14)}" stroke-linecap="round"/>
+     <circle cx="${cx}" cy="${cy}" r="${Math.max(1.2, r * .1)}" fill="${C.ink}"/>`;
+
+  /* ---------- Icons (108×108 adaptive canvas) ---------- */
+  const ICONS = [
+    ['T1', 'Coin o’clock', 'The happy coin is also a clock: twelve little ticks around its rim. Money and time, one face.', .8, () => `
+      <rect width="108" height="108" fill="${C.iris}"/>
+      ${coin(54, 54, 30)}
+      ${Array.from({ length: 12 }, (_, i) => { const a = i * Math.PI / 6, r = 24.5, big = i % 3 === 0; return `<circle cx="${(54 + r * Math.sin(a)).toFixed(2)}" cy="${(54 - r * Math.cos(a)).toFixed(2)}" r="${big ? 2 : 1.3}" fill="${C.goldDark}"/>`; }).join('')}
+      ${face(54, 56, .8, 'happy')}
+      ${spark(80, 28, 6, C.cream)}`],
+
+    ['T2', 'Hourglass of coins', 'Coins fall like sand and land as a happy coin. Your time, turning into something good.', .8, () => `
+      <rect width="108" height="108" fill="${C.mint}"/>
+      <path d="M38 28c0 14 13 17 13 26s-13 12-13 26h32c0-14-13-17-13-26s13-12 13-26z" fill="${C.cream}" stroke="${C.iris}" stroke-width="3" stroke-linejoin="round"/>
+      ${plainCoin(47, 34, 4.2)}${plainCoin(58, 33, 4.2)}${plainCoin(53, 40, 3.8)}${plainCoin(54, 52, 2.4)}
+      ${coin(54, 70, 11)}${face(54, 70, .36, 'happy')}
+      <rect x="34" y="22" width="40" height="7" rx="3.5" fill="${C.iris}"/>
+      <rect x="34" y="79" width="40" height="7" rx="3.5" fill="${C.iris}"/>
+      ${spark(81, 34, 4.5, C.iris)}`],
+
+    ['T3', 'Stopwatch coin', 'A coin with a stopwatch crown and a timer ring ticking around it. Every price, timed.', .76, () => `
+      <rect width="108" height="108" fill="${C.apricot}"/>
+      <rect x="49" y="18" width="10" height="7" rx="3" fill="${C.iris}"/>
+      <rect x="52" y="24" width="4" height="6" fill="${C.iris}"/>
+      <rect x="72" y="25" width="8" height="6" rx="2.5" fill="${C.iris}" transform="rotate(45 76 28)"/>
+      <path d="${arc(54, 58, 31, 0, 360 - 0.01)}" fill="none" stroke="#F5C7AE" stroke-width="4"/>
+      <path d="${arc(54, 58, 31, 0, 235)}" fill="none" stroke="${C.iris}" stroke-width="4" stroke-linecap="round"/>
+      ${coin(54, 58, 25)}${face(54, 59, .78, 'grin')}`],
+
+    ['T4', 'Alarm coin', 'The coin as a little alarm clock, bells and feet included. “Wake up, is it worth it?”', .76, () => `
+      <rect width="108" height="108" fill="${C.iris}"/>
+      <path d="M42 80l-4 5M66 80l4 5" stroke="${C.cream}" stroke-width="4.5" stroke-linecap="round"/>
+      <g transform="rotate(-35 33 34)"><path d="M23 38a10 10 0 0 1 20 0z" fill="${C.cream}"/></g>
+      <g transform="rotate(35 75 34)"><path d="M65 38a10 10 0 0 1 20 0z" fill="${C.cream}"/></g>
+      <rect x="51" y="23" width="6" height="6" rx="2" fill="${C.cream}"/>
+      ${coin(54, 56, 26)}${face(54, 57, .82, 'grin')}
+      ${spark(84, 58, 4, C.irisLight)}`],
+
+    ['T5', 'Coin & clock buddies', 'Two best friends: a happy coin and a smiley clock. Time and money, getting along.', .84, () => `
+      <rect width="108" height="108" fill="${C.mint}"/>
+      <circle cx="69" cy="42" r="17" fill="${C.cream}" stroke="${C.iris}" stroke-width="3.5"/>
+      <path d="M69 28v3M69 53v3M55 42h3M80 42h3" stroke="${C.iris}" stroke-width="2.4" stroke-linecap="round"/>
+      <circle cx="64" cy="40" r="2.1" fill="${C.ink}"/><circle cx="74" cy="40" r="2.1" fill="${C.ink}"/>
+      <path d="M64.5 45q4.5 4 9 0" fill="none" stroke="${C.ink}" stroke-width="2.3" stroke-linecap="round"/>
+      ${coin(43, 64, 19)}${face(43, 64, .62, 'happy')}
+      ${spark(30, 34, 4.5, C.iris)}`],
+
+    ['T6', 'Time is money', 'A clock and the happy coin on a perfectly level seesaw. Balanced, like a good decision.', .8, () => `
+      <rect width="108" height="108" fill="${C.apricot}"/>
+      <path d="M54 54l12 22H42z" fill="${C.iris}" stroke="${C.iris}" stroke-width="4" stroke-linejoin="round"/>
+      <path d="M22 51h64" stroke="${C.iris}" stroke-width="7" stroke-linecap="round"/>
+      ${clock(32, 37, 11)}
+      ${coin(76, 36, 12)}${face(76, 36, .4, 'happy')}
+      ${spark(54, 26, 4.5, C.iris)}`],
+
+    ['T7', 'Calendar coin', 'The app’s day grid on a calendar, with the happy coin popping in. “This costs 3½ days.”', .84, () => `
+      <rect width="108" height="108" fill="#E4DFFF"/>
+      <rect x="25" y="30" width="46" height="44" rx="10" fill="${C.cream}"/>
+      <path d="M25 40a10 10 0 0 1 10-10h26a10 10 0 0 1 10 10v2H25z" fill="${C.iris}"/>
+      <rect x="34" y="25" width="4" height="10" rx="2" fill="${C.ink}"/><rect x="58" y="25" width="4" height="10" rx="2" fill="${C.ink}"/>
+      ${[[35, 51], [44, 51], [53, 51], [62, 51], [35, 60]].map(([x, y]) => `<circle cx="${x}" cy="${y}" r="3.5" fill="${C.iris}"/>`).join('')}
+      <path d="M44 56.5a3.5 3.5 0 1 1 0 7z" fill="${C.iris}"/><circle cx="44" cy="60" r="3.5" fill="none" stroke="${C.iris}" stroke-width="1"/>
+      ${[[53, 60], [35, 69], [44, 69]].map(([x, y]) => `<circle cx="${x}" cy="${y}" r="3.5" fill="#E3E0E6"/>`).join('')}
+      ${coin(71, 70, 16)}${face(71, 70, .52, 'grin')}`],
+
+    ['T8', 'Piggy timer', 'The piggy bank, now with a little clock on its side and the coin dropping in. Saving up, in time.', .86, () => `
+      <rect width="108" height="108" fill="${C.iris}"/>
+      <path d="M38 74v6M48 76v6M62 76v6M72 74v6" stroke="#E0607E" stroke-width="6" stroke-linecap="round"/>
+      <ellipse cx="55" cy="66" rx="25" ry="17" fill="#F7A1B8"/>
+      <path d="M40 54l-3-9 10 5z" fill="#F07C99" stroke="#F07C99" stroke-width="2" stroke-linejoin="round"/>
+      <ellipse cx="79" cy="66" rx="6" ry="7" fill="#F07C99"/>
+      <circle cx="77.5" cy="64.5" r="1.3" fill="#B03A5A"/><circle cx="77.5" cy="68.5" r="1.3" fill="#B03A5A"/>
+      <circle cx="69" cy="61" r="2.2" fill="${C.ink}"/>
+      <path d="M30 64q-5-1-4 4" fill="none" stroke="#F07C99" stroke-width="2.5" stroke-linecap="round"/>
+      ${clock(50, 68, 8, '#E0607E')}
+      <rect x="49" y="50" width="14" height="3.4" rx="1.7" fill="#B03A5A"/>
+      <g transform="rotate(-12 56 34)">${coin(56, 34, 13)}${face(56, 34, .42, 'grin')}</g>
+      ${spark(80, 34, 4.5, C.cream)}`],
+  ];
+
+  function svg(build, fit, cls = '') {
+    const s = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    s.setAttribute('viewBox', '18 18 72 72');
+    if (cls) s.setAttribute('class', cls);
+    s.innerHTML = build();
+    const g = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+    g.setAttribute('transform', `translate(54 54) scale(${fit}) translate(-54 -54)`);
+    [...s.children].slice(1).forEach((n) => g.appendChild(n));
+    s.appendChild(g);
+    return s;
+  }
+  const grid = document.getElementById('grid');
+  ICONS.forEach(([id, name, idea, fit, build]) => {
+    const card = document.createElement('div'); card.className = 'card';
+    const hero = document.createElement('div'); hero.className = 'hero'; hero.appendChild(svg(build, fit));
+    const masks = document.createElement('div'); masks.className = 'masks';
+    masks.appendChild(svg(build, fit, 'sq')); masks.appendChild(svg(build, fit, 'rs'));
+    const home = document.createElement('div'); home.className = 'home'; home.appendChild(svg(build, fit)); home.append('Worth It');
+    masks.appendChild(home);
+    card.append(hero, masks);
+    card.insertAdjacentHTML('beforeend', `<h2><span class="num">${id}</span>${name}</h2><p>${idea}</p>`);
+    grid.appendChild(card);
+  });
+</script>
+</body>
+</html>

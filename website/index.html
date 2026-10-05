@@ -13,7 +13,7 @@
 <meta property="og:site_name" content="Worth It">
 <meta name="twitter:card" content="summary">
 <link rel="canonical" href="https://worthitapp.vercel.app/">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 108 108'%3E%3Crect width='108' height='108' rx='30' fill='%235B4FC4'/%3E%3Cpath fill='%23FBF8FC' d='M54 18c5 0 8 4 12 5s9-1 13 2 2 8 5 12 8 6 8 11-4 6-4 6 4 2 4 6-5 7-8 11-1 9-5 12-9 1-13 2-7 5-12 5-8-4-12-5-9 1-13-2-2-8-5-12-8-6-8-11 4-6 4-6-4-2-4-6 5-7 8-11 1-9 5-12 9-1 13-2 7-5 12-5z'/%3E%3Cpath fill='%235B4FC4' stroke='%235B4FC4' stroke-width='3' stroke-linejoin='round' d='M42 38h24M42 70h24M45 40h18l-9 13zM54 55l9 13H45z'/%3E%3C/svg%3E">
+<link rel="icon" type="image/svg+xml" href="/icon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,wght,ROND@6..144,400..900,0..100&display=swap" rel="stylesheet">
@@ -170,6 +170,8 @@ header.top.scrolled {
 }
 .nav { display: flex; align-items: center; gap: 12px; }
 .brand { display: flex; align-items: center; gap: 12px; font-weight: 800; font-size: 22px; font-variation-settings: "ROND" 100; letter-spacing: -0.02em; }
+.brand .logo-coin { width: 44px; height: 44px; transition: transform .6s cubic-bezier(.34,1.56,.64,1); }
+.brand:hover .logo-coin { transform: rotate(-14deg) scale(1.08); }
 .brand .logo { width: 44px; height: 44px; position: relative; display: grid; place-items: center; }
 .brand .logo svg.blob { position: absolute; inset: 0; width: 100%; height: 100%; }
 .brand .logo span { position: relative; font-size: 20px; }
@@ -466,7 +468,7 @@ footer a { font-weight: 600; color: var(--primary); }
 <header class="top" id="top">
   <div class="wrap nav">
     <a href="#" class="brand" aria-label="Worth It home">
-      <span class="logo"><svg class="blob" viewBox="0 0 100 100" data-blob="cookie9,clover4,sunny,flower" data-color="var(--primary)" aria-hidden="true"></svg><span>⏳</span></span>
+      <img class="logo-coin" src="/coin.svg" width="44" height="44" alt="">
       Worth It
     </a>
     <nav class="links" aria-label="Sections">
