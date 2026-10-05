@@ -69,6 +69,7 @@ import app.worthit.ui.Route
 import app.worthit.ui.components.BtnStyle
 import app.worthit.ui.components.ExpressiveButton
 import app.worthit.ui.components.GroupingTransformation
+import app.worthit.ui.components.HappyCoin
 import app.worthit.ui.components.MorphingBlob
 import app.worthit.ui.components.PlainField
 import app.worthit.ui.components.RollingText
@@ -131,9 +132,7 @@ private fun HomeHeader(profile: Profile, modifier: Modifier = Modifier) {
     var flip by rememberSaveable { mutableIntStateOf(0) }
     val haptic = LocalHapticFeedback.current
     Row(modifier.fillMaxWidth().padding(top = 8.dp), verticalAlignment = Alignment.CenterVertically) {
-        MorphingBlob(MaterialTheme.colorScheme.primary, Modifier.size(56.dp), holdMillis = 2600) {
-            Text("⏳", fontSize = 24.sp)
-        }
+        HappyCoin(Modifier.size(56.dp))
         Spacer(Modifier.width(14.dp))
         Column(Modifier.weight(1f)) {
             Text(greeting + if (profile.name.isNotBlank()) ", ${profile.name}" else "", style = MaterialTheme.typography.bodyLarge, color = MaterialTheme.colorScheme.onSurfaceVariant)

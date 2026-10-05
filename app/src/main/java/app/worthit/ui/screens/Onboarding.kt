@@ -79,6 +79,9 @@ import app.worthit.ui.components.ChoiceChip
 import app.worthit.ui.components.ChoiceGroup
 import app.worthit.ui.components.ExpressiveButton
 import app.worthit.ui.components.GroupingTransformation
+import app.worthit.ui.components.HappyCoin
+import androidx.compose.foundation.layout.BoxWithConstraints
+import androidx.compose.foundation.layout.offset
 import app.worthit.ui.components.MoneyField
 import app.worthit.ui.components.MorphingBlob
 import app.worthit.ui.components.PlainField
@@ -126,14 +129,22 @@ fun OnboardingScreen(vm: AppViewModel, initial: Profile) {
     BackHandler(enabled = step > 0 && !finishing) { step-- }
 
     if (finishing) {
+        var cheer by remember { mutableIntStateOf(0) }
         LaunchedEffect(Unit) {
-            delay(1300)
+            // The coin jumps right as the confetti bursts, then we head into the app.
+            vm.celebrate()
+            cheer++
+            delay(700)
+            cheer++
+            delay(900)
             vm.finishOnboarding(profile())
         }
         Column(Modifier.fillMaxSize(), horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.Center) {
-            LoadingIndicator(Modifier.size(96.dp))
-            Spacer(Modifier.height(20.dp))
+            HappyCoin(Modifier.size(150.dp), excite = cheer, hop = 12f, idle = false)
+            Spacer(Modifier.height(24.dp))
             Text("Turning money into time…", style = MaterialTheme.typography.titleLarge)
+            Spacer(Modifier.height(16.dp))
+            LoadingIndicator(Modifier.size(48.dp))
         }
         return
     }
@@ -207,23 +218,34 @@ private fun Welcome() {
         Icons.Rounded.SportsEsports, Icons.Rounded.DirectionsBike, Icons.Rounded.CameraAlt, Icons.Rounded.ShoppingBag,
     )
     var i by remember { mutableIntStateOf(0) }
+    var ticks by remember { mutableIntStateOf(0) }
     LaunchedEffect(Unit) {
         while (true) {
             delay(1500)
             i = (i + 1) % icons.size
+            ticks++
         }
     }
     val scheme = MaterialTheme.colorScheme
     Column(Modifier.fillMaxWidth().padding(top = 24.dp), horizontalAlignment = Alignment.CenterHorizontally) {
-        Box(Modifier.size(260.dp), contentAlignment = Alignment.Center) {
-            MorphingBlob(scheme.tertiaryContainer, Modifier.size(260.dp), holdMillis = 1700, spinMillis = 40_000)
-            MorphingBlob(scheme.primary, Modifier.size(196.dp), holdMillis = 1100) {
+        // The happy coin daydreams about things it could buy, in a morphing thought bubble.
+        BoxWithConstraints(Modifier.fillMaxWidth().height(290.dp)) {
+            val w = maxWidth
+            val bubble = 164.dp
+            MorphingBlob(
+                scheme.primaryContainer,
+                Modifier.offset(x = w - bubble - 4.dp, y = 0.dp).size(bubble),
+                holdMillis = 1100,
+            ) {
                 AnimatedContent(icons[i], transitionSpec = {
                     (scaleIn(Motion.bouncy(), initialScale = 0.2f) + fadeIn()) togetherWith (scaleOut(targetScale = 0.2f) + fadeOut())
                 }, label = "welcomeIcon") { icon ->
-                    Icon(icon, null, Modifier.size(88.dp), tint = scheme.onPrimary)
+                    Icon(icon, null, Modifier.size(72.dp), tint = scheme.primary)
                 }
             }
+            Box(Modifier.offset(x = w * 0.55f, y = 154.dp).size(16.dp).clip(CircleShape).background(scheme.primaryContainer))
+            Box(Modifier.offset(x = w * 0.5f, y = 178.dp).size(9.dp).clip(CircleShape).background(scheme.primaryContainer))
+            HappyCoin(Modifier.offset(x = w * 0.06f, y = 150.dp).size(136.dp), excite = ticks, hop = 3f)
         }
         Spacer(Modifier.height(32.dp))
         Text("What does money mean to you?", style = MaterialTheme.typography.displaySmall, modifier = Modifier.fillMaxWidth())

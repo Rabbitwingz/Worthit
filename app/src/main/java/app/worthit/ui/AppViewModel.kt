@@ -76,7 +76,6 @@ class AppViewModel(app: Application) : AndroidViewModel(app) {
 
     fun finishOnboarding(profile: Profile) {
         store.update { it.copy(profile = profile.copy(onboarded = true)) }
-        celebrate()
     }
 
     // Purchases
