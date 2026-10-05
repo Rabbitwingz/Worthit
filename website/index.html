@@ -360,7 +360,17 @@ header.top.scrolled {
 .cmp th { text-align: center; font-weight: 600; padding-bottom: 4px; }
 .cmp th:first-child, .cmp td:first-child { text-align: left; color: var(--on-var); font-weight: 600; }
 .cmp td { text-align: center; padding: 8px 6px; font-weight: 700; font-variant-numeric: tabular-nums; }
-.cmp td.best span { background: var(--tc); color: var(--on-tc); padding: 5px 10px; border-radius: 12px; }
+.cmp th, .cmp td { white-space: nowrap; }
+.cmp td.best span { display: inline-block; background: var(--tc); color: var(--on-tc); padding: 5px 10px; border-radius: 12px; }
+.cmp-wrap { flex: 1 1 300px; min-width: 0; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+@media (max-width: 520px) {
+  .card { padding: 22px; border-radius: 30px; }
+  .cmp { font-size: 14px; border-spacing: 0 4px; }
+  .cmp th { font-size: 13px; }
+  .cmp td { padding: 7px 3px; }
+  .cmp td:first-child { padding-right: 8px; }
+  .cmp td.best span { padding: 4px 8px; border-radius: 10px; }
+}
 
 /* ---------- Quote band ---------- */
 .band {
@@ -675,12 +685,12 @@ footer a { font-weight: 600; color: var(--primary); }
               <h3>Which one, though?</h3>
               <p class="desc">Line up the things you're torn between. We highlight what's interesting. We never pick a winner. You do.</p>
             </div>
-            <div style="flex:1;min-width:280px;overflow-x:auto">
+            <div class="cmp-wrap">
               <table class="cmp">
                 <thead><tr><th></th><th>🧱<br>LEGO</th><th>⌚<br>Fitbit</th><th>🎹<br>Piano</th></tr></thead>
                 <tbody>
                   <tr><td>Price</td><td>₹10k</td><td>₹12.5k</td><td>₹45k</td></tr>
-                  <tr><td>Work days</td><td>2.2</td><td>2.8</td><td>9.9</td></tr>
+                  <tr><td>Days</td><td>2.2</td><td>2.8</td><td>9.9</td></tr>
                   <tr><td>Uses</td><td>10</td><td class="best"><span>1,095</span></td><td>1,040</td></tr>
                   <tr><td>Cost / use</td><td>₹1,000</td><td class="best"><span>₹11</span></td><td>₹43</td></tr>
                   <tr><td>Lifespan</td><td>1 yr</td><td>3 yr</td><td class="best"><span>5 yr</span></td></tr>
