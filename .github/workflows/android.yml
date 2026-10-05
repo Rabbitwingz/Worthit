@@ -3,7 +3,9 @@ name: Build Worth It
 on:
   push:
     branches: [main]
+    paths-ignore: ["website/**", "README.md"]
   pull_request:
+    paths-ignore: ["website/**", "README.md"]
   workflow_dispatch:
 
 permissions:
